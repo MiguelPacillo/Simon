@@ -4,11 +4,7 @@ import random
 window = Tk()
 window.title("Simon")
 window.resizable(0, 0)
-window.configure(background="white")
-window.geometry("500x500")
-
-sequence_label = Label(window, text="", bg="white", fg="black", font="arial 20 bold")
-sequence_label.grid(row=0, column=0, pady=(20, 0), padx=10)
+window.configure(background="black")
 
 all = ["A", "B", "C", "D"]
 
@@ -25,7 +21,7 @@ def restart():
 
     cpu_sequence = ""
 
-    sequence_label.configure(text="")
+    start_butt.configure(text="ass")
 
 def main():
 
@@ -33,9 +29,9 @@ def main():
 
     if round_chckr == True:
 
-        cpu_sequence = cpu_sequence + random.choice(all)
+        start_butt.configure(state=DISABLED)
 
-        sequence_label.configure(text=str(cpu_sequence))
+        cpu_sequence = cpu_sequence + random.choice(all)
 
         round_chckr = False
 
@@ -43,6 +39,20 @@ def main():
 
         player_sequence = ""
         player_round = 0
+
+        for x in cpu_sequence:
+
+            if x == "A":
+
+
+            elif x == "B":
+
+
+            elif x == "C":
+
+
+            elif x == "D":
+
 
         a_butt.configure(state=NORMAL)
         b_butt.configure(state=NORMAL)
@@ -131,19 +141,19 @@ def d_seq():
             main()
 
 
-a_butt = Button(window, text="A", bg="green", fg="white", font="arial 15 bold", command=a_seq, state=DISABLED)
-a_butt.grid(row=2, column=0, pady=20)
+a_butt = Button(window, bg="red", command=a_seq, state=DISABLED, height=5, width=10)
+a_butt.grid(row=0, column=1)
 
-b_butt = Button(window, text="B", bg="red", fg="white", font="arial 15 bold", command=b_seq, state=DISABLED)
-b_butt.grid(row=2, column=1, pady=20)
+b_butt = Button(window, bg="green", command=b_seq, state=DISABLED, height=5, width=10)
+b_butt.grid(row=1, column=0)
 
-c_butt = Button(window, text="C", bg="blue", fg="white", font="arial 15 bold", command=c_seq, state=DISABLED)
-c_butt.grid(row=2, column=2, pady=20)
+c_butt = Button(window, bg="blue", command=c_seq, state=DISABLED, height=5, width=10)
+c_butt.grid(row=1, column=2)
 
-d_butt = Button(window, text="D", bg="orange", fg="white", font="arial 15 bold", command=d_seq, state=DISABLED)
-d_butt.grid(row=2, column=3, pady=20)
+d_butt = Button(window, bg="yellow", command=d_seq, state=DISABLED, height=5, width=10)
+d_butt.grid(row=2, column=1)
 
-start_butt = Button(window, text="START", bg="pink", fg="white", font="arial 15 bold", command=main)
-start_butt.grid(row=2, column=4, pady=20)
+start_butt = Button(window, text="START", bg="black", fg="white", font="arial 15 bold", command=main, height=5, width=10)
+start_butt.grid(row=1, column=1)
 
 window.mainloop()
