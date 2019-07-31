@@ -15,21 +15,50 @@ round_chckr = True
 cpu_round = 0
 player_round = 0
 
+score = 0
+
+def scorer():
+
+    global score
+
+    score += 1
+
+    current_score.configure(text="Score: " + str(score))
+
 def restart():
 
-    global cpu_sequence
+    global cpu_sequence, round_chckr, score, player_sequence, cpu_round, player_round
 
     cpu_sequence = ""
 
-    start_butt.configure(text="ass")
+    cpu_round = 0
+    player_round = 0
+
+    score = 0
+
+    current_score.configure(text="Score: " + str(score))
+
+    start_butt.configure(text="Game\nOver")
+    start_butt.update()
+
+    a_butt.configure(state=DISABLED)
+    b_butt.configure(state=DISABLED)
+    c_butt.configure(state=DISABLED)
+    d_butt.configure(state=DISABLED)
+
+    window.after(1000)
+
+    round_chckr = True
+
+    main()
 
 def main():
 
-    global cpu_sequence, round_chckr, cpu_round, player_sequence, player_round
+    global cpu_sequence, round_chckr, cpu_round, player_sequence, player_round, score
 
     if round_chckr == True:
 
-        start_butt.configure(state=DISABLED)
+        start_butt.configure(state=DISABLED, text="CPU\nRound")
 
         cpu_sequence = cpu_sequence + random.choice(all)
 
@@ -74,10 +103,14 @@ def main():
                 d_butt.configure(bg="yellow")
                 a_butt.update()
 
+        window.after(300)
+
         a_butt.configure(state=NORMAL)
         b_butt.configure(state=NORMAL)
         c_butt.configure(state=NORMAL)
         d_butt.configure(state=NORMAL)
+
+        start_butt.configure(text="Player\nRound")
 
 def a_seq():
 
@@ -94,6 +127,8 @@ def a_seq():
             restart()
 
         elif player_sequence == cpu_sequence:
+
+            scorer()
 
             round_chckr = True
 
@@ -115,6 +150,8 @@ def b_seq():
 
         elif player_sequence == cpu_sequence:
 
+            scorer()
+
             round_chckr = True
 
             main()
@@ -134,6 +171,8 @@ def c_seq():
             restart()
 
         elif player_sequence == cpu_sequence:
+
+            scorer()
 
             round_chckr = True
 
@@ -156,25 +195,29 @@ def d_seq():
 
         elif player_sequence == cpu_sequence:
 
+            scorer()
+
             round_chckr = True
 
             main()
 
 
-a_butt = Button(window, bg="red", command=a_seq, state=DISABLED, height=5, width=10)
+a_butt = Button(window, bg="red", command=a_seq, state=DISABLED, height=8, width=16, activebackground="gray")
 a_butt.grid(row=0, column=1)
 
-b_butt = Button(window, bg="green", command=b_seq, state=DISABLED, height=5, width=10)
+b_butt = Button(window, bg="green", command=b_seq, state=DISABLED, height=8, width=16, activebackground="gray")
 b_butt.grid(row=1, column=0)
 
-c_butt = Button(window, bg="blue", command=c_seq, state=DISABLED, height=5, width=10)
+c_butt = Button(window, bg="blue", command=c_seq, state=DISABLED, height=8, width=16, activebackground="gray")
 c_butt.grid(row=1, column=2)
 
-d_butt = Button(window, bg="yellow", command=d_seq, state=DISABLED, height=5, width=10)
+d_butt = Button(window, bg="yellow", command=d_seq, state=DISABLED, height=8, width=16, activebackground="gray")
 d_butt.grid(row=2, column=1)
 
-start_butt = Button(window, text="START", bg="black", fg="white", font="arial 15 bold", command=main, height=5, width=10)
+start_butt = Button(window, text="START", bg="black", fg="green", font="arial 15 bold", command=main, height=8, width=16)
 start_butt.grid(row=1, column=1)
 
+current_score = Label(window, text="Score: 0", bg="black", fg="white", font="arial 15 bold")
+current_score.grid(row=2, column=0)
 
 window.mainloop()
