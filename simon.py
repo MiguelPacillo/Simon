@@ -43,16 +43,36 @@ def main():
         for x in cpu_sequence:
 
             if x == "A":
-
+                a_butt.after(300)
+                a_butt.configure(bg="red4")
+                a_butt.update()
+                a_butt.after(300)
+                a_butt.configure(bg="red")
+                a_butt.update()
 
             elif x == "B":
-
+                b_butt.after(300)
+                b_butt.configure(bg="dark green")
+                a_butt.update()
+                b_butt.after(300)
+                b_butt.configure(bg="green")
+                a_butt.update()
 
             elif x == "C":
-
+                c_butt.after(300)
+                c_butt.configure(bg="blue4")
+                a_butt.update()
+                c_butt.after(300)
+                c_butt.configure(bg="blue")
+                a_butt.update()
 
             elif x == "D":
-
+                d_butt.after(300)
+                d_butt.configure(bg="yellow4")
+                a_butt.update()
+                d_butt.after(300)
+                d_butt.configure(bg="yellow")
+                a_butt.update()
 
         a_butt.configure(state=NORMAL)
         b_butt.configure(state=NORMAL)
@@ -155,5 +175,6 @@ d_butt.grid(row=2, column=1)
 
 start_butt = Button(window, text="START", bg="black", fg="white", font="arial 15 bold", command=main, height=5, width=10)
 start_butt.grid(row=1, column=1)
+
 
 window.mainloop()
